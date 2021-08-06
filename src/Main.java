@@ -2,14 +2,11 @@ import entidades.Funcionario;
 import escolhas.EscolhaPrincipal;
 import uteis.Menu;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
 public class Main {
-
-
     public static void main(String[] args) throws Exception {
         EscolhaPrincipal escolhaPrincipal = new EscolhaPrincipal();
 
@@ -19,7 +16,6 @@ public class Main {
         int escolha;
 
         menu.menuPrincipal();
-
 
         do {
             escolha = scanner.nextInt();

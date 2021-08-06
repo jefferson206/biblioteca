@@ -1,7 +1,5 @@
 package entidades;
 
-import java.util.Date;
-
 public class Pessoa extends Endereco {
     private String nome;
     private String dataNascimento;

@@ -8,7 +8,9 @@ public abstract class FormCadastroGeral {
 
     public Map<String, Object> formularioCadastroPessoa() {
         System.out.print("Digite o nome completo: ");
-        objectHashMap.put("nome", scanner.nextLine());
+        String nome = scanner.nextLine();
+        if (nome.isEmpty()) nome = scanner.nextLine();
+        objectHashMap.put("nome", nome);
         System.out.print("Data de nascimento: ");
         objectHashMap.put("dataNascimento", scanner.nextLine());
         System.out.print("CPF: ");
@@ -36,11 +38,21 @@ public abstract class FormCadastroGeral {
         System.out.print("Login: ");
         objectHashMap.put("login", scanner.nextLine());
         System.out.print("Senha: ");
-        objectHashMap.put("senha", scanner.nextLine());
+        objectHashMap.put("senha", scanner.nextInt());
         return objectHashMap;
     }
 
-    public Map<String, Object> formularioCadastroAcervo() {
+    public Map<String, Object> formularioCadastroLivro() {
+        System.out.print("Titulo: ");
+        String nome = scanner.nextLine();
+        if (nome.isEmpty()) nome = scanner.nextLine();
+        objectHashMap.put("titulo", nome);
+        System.out.print("Autor: ");
+        objectHashMap.put("autor", scanner.nextLine());
+        System.out.print("Editora: ");
+        objectHashMap.put("editora", scanner.nextLine());
+        System.out.print("Ano de publicação: ");
+        objectHashMap.put("anoPublicacao", scanner.nextInt());
         return objectHashMap;
     }
 }

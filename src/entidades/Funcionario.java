@@ -1,8 +1,11 @@
 package entidades;
 
-import java.util.Date;
+import interfaces.Login;
 
-public class Funcionario extends Pessoa {
+import java.util.List;
+import java.util.Map;
+
+public class Funcionario extends Pessoa implements Login {
     private String funcao;
     private String login;
     private Integer senha;
@@ -19,7 +22,6 @@ public class Funcionario extends Pessoa {
         this.senha = senha;
     }
 
-
     public String getFuncao() {
         return funcao;
     }
@@ -32,9 +34,7 @@ public class Funcionario extends Pessoa {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+    public void setLogin(String login) { this.login = login; }
 
     public Integer getSenha() {
         return senha;
@@ -53,4 +53,12 @@ public class Funcionario extends Pessoa {
                 '}';
     }
 
+    public boolean logarNaAplicacao(List<Funcionario> funcionarios) throws InterruptedException {
+        Map<String, Object> logar = logar();
+        String nome = (String) logar.get("login");
+        int senha = (int) logar.get("senha");
+        boolean acesso = funcionarios.stream().anyMatch(p -> p.getLogin().equals(nome) && p.getSenha().equals(senha));
+        validaLoginSenha(acesso);
+        return acesso;
+    }
 }

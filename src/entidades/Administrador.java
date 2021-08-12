@@ -8,14 +8,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Administrador implements Login {
+public class Administrador implements Login<Administrador> {
     private final String login = "admin";
     private final Integer senha = 1234;
-    private boolean acesso;
-
-    public boolean isAcesso() {
-        return acesso;
-    }
 
     public Administrador() {
     }
@@ -36,12 +31,13 @@ public class Administrador implements Login {
                 '}';
     }
 
-    public boolean logarNaAplicacao() throws InterruptedException {
+    @Override
+    public boolean logarNaAplicacao(List<Administrador> administrador) throws Exception {
         Map<String, Object> logar = logar();
         String nome = (String) logar.get("login");
         int senha = (int) logar.get("senha");
         boolean acesso = getLogin().equals(nome) && getSenha().equals(senha);
-        validaLoginSenha(acesso);
+        validaLoginSenha(acesso, "menuPrincipalDoAdministrador");
         return acesso;
     }
 }

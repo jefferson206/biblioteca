@@ -1,6 +1,11 @@
 package entidades;
 
-public class Aluno extends Pessoa {
+import interfaces.Login;
+
+import java.util.List;
+import java.util.Map;
+
+public class Aluno extends Pessoa implements Login<Aluno> {
     private String login;
     private Integer senha;
     private String curso;
@@ -60,5 +65,15 @@ public class Aluno extends Pessoa {
                 ", curso='" + curso + '\'' +
                 ", semestre='" + semestre + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean logarNaAplicacao(List<Aluno> alunos) throws Exception {
+        Map<String, Object> logar = logar();
+        String nome = (String) logar.get("login");
+        int senha = (int) logar.get("senha");
+        boolean acesso = alunos.stream().anyMatch(p -> p.getLogin().equals(nome) && p.getSenha().equals(senha));
+        validaLoginSenha(acesso, "menuDoAluno");
+        return acesso;
     }
 }

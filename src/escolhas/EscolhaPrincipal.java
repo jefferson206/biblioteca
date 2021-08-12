@@ -6,10 +6,12 @@ import entidades.Funcionario;
 import entidades.Livro;
 import uteis.Menu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class EscolhaPrincipal {
+    List<Administrador> administradores = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
     EscolhaAdmin escolhaAdmin = new EscolhaAdmin();
     Menu menu = new Menu();
@@ -19,7 +21,7 @@ public class EscolhaPrincipal {
         switch (escolha) {
             case 1:
                 Administrador administrador = new Administrador();
-                acesso = administrador.logarNaAplicacao();
+                acesso = administrador.logarNaAplicacao(administradores);
                 if (!acesso) break;
                 int escolhaAdminSwitch;
                 do {
@@ -42,13 +44,23 @@ public class EscolhaPrincipal {
 //                menu.menuPrincipal();
                 break;
             case 3:
-
+                Aluno aluno = new Aluno();
+                EscolhaAluno escolhaAluno = new EscolhaAluno();
+                acesso = aluno.logarNaAplicacao(alunos);
+                if (!acesso) break;
+                int escolhaAlunoSwitch;
+                do {
+                    escolhaAlunoSwitch = scanner.nextInt();
+                    escolhaAluno.getEscolhaAluno(escolhaAlunoSwitch, alunos, livros);
+                } while (escolhaAlunoSwitch != 5);
+                menu.limparTela();
                 menu.menuPrincipal();
                 break;
             case 4:
                 break;
             default:
                 menu.escolhaInvalida();
+                menu.menuPrincipal();
                 break;
         }
     }

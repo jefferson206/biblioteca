@@ -1,9 +1,12 @@
 package uteis;
 
+import javax.swing.*;
+import java.awt.*;
+
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
-public class Menu {
+public class Menu extends JPanel {
     public void menuPrincipal() {
         System.out.println("--------- B I B L I O T E C A ---------");
         System.out.println("| 1) ADMIN                            |");
@@ -26,6 +29,17 @@ public class Menu {
         System.out.println("| 8) Excluir aluno                    |");
         System.out.println("| 9) Excluir livro                    |");
         System.out.println("| 10) Voltar ao menu principal        |");
+        System.out.println("---------------------------------------");
+        System.out.print("Opção: ");
+    }
+
+    public void menuDoAluno() {
+        System.out.println("-------------- A L U N O --------------");
+        System.out.println("| 1) Checar todos os livros           |");
+        System.out.println("| 2) Checar livros disponiveis        |");
+        System.out.println("| 3) Fazer emprestimo do livro        |");
+        System.out.println("| 4) Devolver livro                   |");
+        System.out.println("| 5) voltar ao menu principal         |");
         System.out.println("---------------------------------------");
         System.out.print("Opção: ");
     }
@@ -60,12 +74,6 @@ public class Menu {
         funcao.invoke(object);
     }
 
-    public void cadastroDeletadoComSucesso(Object object, Method funcao) throws Exception {
-        System.out.println("\nCadastro deletado com sucesso !!!");
-        sleepClear();
-        funcao.invoke(object);
-    }
-
     public void limparTela() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
     }
@@ -73,11 +81,32 @@ public class Menu {
     public void escolhaInvalida() throws Exception {
         System.out.println("\nOOOOOOOPS... houve algum engano !!!");
         sleepClear();
-        menuPrincipal();
     }
 
     public void sleepClear() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         limparTela();
+    }
+
+    public void easterEgg() {
+        JFrame frame = new JFrame("Sorria");
+        frame.setSize(500,500);
+        frame.setBackground(Color.white);
+        Menu panel = new Menu();
+        frame.add (panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    public void paint(Graphics grafico) {
+        grafico.setColor(Color.yellow);
+        grafico.drawArc(100,100,250,250,0,360);
+        grafico.fillArc(100,100,250,250,0,360);
+        grafico.setColor(Color.black);
+        grafico.drawArc(170,185,25,25,0,360);
+        grafico.fillArc(170,185,25,25,0,360);
+        grafico.drawArc(255,185,25,25,0,360);
+        grafico.fillArc(255,185,25,25,0,360);
+        grafico.drawArc(150,215,150,100,0,-180);
     }
 }

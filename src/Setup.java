@@ -1,7 +1,9 @@
 import entidades.Aluno;
 import entidades.Funcionario;
 import entidades.Livro;
+import enums.Situacao;
 
+import java.util.Date;
 import java.util.List;
 
 public class Setup {
@@ -50,14 +52,19 @@ public class Setup {
     public void setupLivro(List<Livro> livros) {
         livro = novoLivro();
         livro.setTitulo("As longas tranças do careca");
+        livro.setSituacao(Situacao.DISPONIVEL);
         livros.add(livro);
+
 
         livro = novoLivro();
         livro.setTitulo("As pontas da mesa redonda");
+        livro.setSituacao(Situacao.DISPONIVEL);
         livros.add(livro);
 
         livro = novoLivro();
         livro.setTitulo("Everywhere");
+        livro.setSituacao(Situacao.EMPRESTADO);
+        livro.setDataEmprestimo(new Date());
         livros.add(livro);
     }
 
@@ -66,6 +73,8 @@ public class Setup {
         livro.setAutor("Lesley Banzie");
         livro.setAnoPublicacao(2022);
         livro.setEditora("PIXAR");
+        livro.setDataEmprestimo(null);
+        livro.setDataDevolucao(null);
         return livro;
     }
 

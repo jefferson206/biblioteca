@@ -98,8 +98,12 @@ public class EscolhaAdmin {
                 break;
             case 10:
                 break;
+            case 206:
+                menu.easterEgg();
+                break;
             default:
                 menu.escolhaInvalida();
+                menu.menuPrincipalDoAdministrador();
                 break;
         }
     }

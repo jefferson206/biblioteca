@@ -5,7 +5,7 @@ import interfaces.Login;
 import java.util.List;
 import java.util.Map;
 
-public class Funcionario extends Pessoa implements Login {
+public class Funcionario extends Pessoa implements Login<Funcionario> {
     private String funcao;
     private String login;
     private Integer senha;
@@ -53,12 +53,13 @@ public class Funcionario extends Pessoa implements Login {
                 '}';
     }
 
-    public boolean logarNaAplicacao(List<Funcionario> funcionarios) throws InterruptedException {
+    @Override
+    public boolean logarNaAplicacao(List<Funcionario> funcionarios) throws Exception {
         Map<String, Object> logar = logar();
         String nome = (String) logar.get("login");
         int senha = (int) logar.get("senha");
         boolean acesso = funcionarios.stream().anyMatch(p -> p.getLogin().equals(nome) && p.getSenha().equals(senha));
-        validaLoginSenha(acesso);
+        validaLoginSenha(acesso, "menuPrincipalDoAdministrador");
         return acesso;
     }
 }

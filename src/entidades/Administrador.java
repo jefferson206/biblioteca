@@ -33,11 +33,11 @@ public class Administrador implements Login<Administrador> {
 
     @Override
     public boolean logarNaAplicacao(List<Administrador> administrador) throws Exception {
-        Map<String, Object> logar = logar();
+        Map<String, Object> logar = Login.logar();
         String nome = (String) logar.get("login");
         int senha = (int) logar.get("senha");
         boolean acesso = getLogin().equals(nome) && getSenha().equals(senha);
-        validaLoginSenha(acesso, "menuPrincipalDoAdministrador");
+        Login.validaLoginSenha(acesso, "menuPrincipalDoAdministrador");
         return acesso;
     }
 }

@@ -4,18 +4,16 @@ import entidades.Aluno;
 import entidades.Funcionario;
 import entidades.Livro;
 import entidades.formularios.FormCadastroAdmin;
-import entidades.formularios.FormCadastroGeral;
+import enums.Situacao;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class AdministradorService {
+public class AdministradorService implements ServicosGerais {
     Scanner scanner = new Scanner(System.in);
 
     FormCadastroAdmin formCadastroAdmin = new FormCadastroAdmin();
 
     Aluno aluno = new Aluno();
-    Livro livro = new Livro();
     Funcionario funcionario = new Funcionario();
 
     public Funcionario cadastrarFuncionario() {
@@ -51,10 +49,6 @@ public class AdministradorService {
         funcionarios.removeIf(funcionario -> nome.equals(funcionario.getNome()));
         if (tamanhoInicial == funcionarios.size()) cadastroInexistente();
         else sucesso();
-    }
-
-    public Set<Funcionario> buscaFuncionarioPeloLoginSenha(List<Funcionario> funcionarios, String login, int senha) {
-        return funcionarios.stream().filter(p -> p.getLogin().equals(login) && p.getSenha().equals(senha)).collect(Collectors.toSet());
     }
 
     public Aluno cadastrarAluno() {
@@ -96,33 +90,4 @@ public class AdministradorService {
         else sucesso();
     }
 
-    public Livro cadastrarLivro() {
-        Map<String, Object> objectMap = formCadastroAdmin.formularioCadastroLivro();
-        livro.setTitulo((String) objectMap.get("titulo"));
-        livro.setAutor((String) objectMap.get("autor"));
-        livro.setAnoPublicacao((Integer) objectMap.get("anoPublicacao"));
-        livro.setEditora((String) objectMap.get("editora"));
-        return livro;
-    }
-
-    public void listarLivros(List<Livro> livros) {
-        livros.stream().map(livro -> "TITULO: " + livro.getTitulo() +
-                "\nAUTOR: " + livro.getAutor() + "\n")
-                .forEachOrdered(System.out::println);
-    }
-
-    public void deletarLivro(List<Livro> livros, String titulo) {
-        int tamanhoInicial = livros.size();
-        livros.removeIf(livro -> titulo.equals(livro.getTitulo()));
-        if (tamanhoInicial == livros.size()) cadastroInexistente();
-        else sucesso();
-    }
-
-    private void cadastroInexistente() {
-        System.out.println("OOOOOPS... Cadastro inexistente");
-    }
-
-    private void sucesso() {
-        System.out.println("S U C E S S O . . . . . ");
-    }
 }

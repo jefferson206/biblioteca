@@ -55,11 +55,11 @@ public class Funcionario extends Pessoa implements Login<Funcionario> {
 
     @Override
     public boolean logarNaAplicacao(List<Funcionario> funcionarios) throws Exception {
-        Map<String, Object> logar = logar();
+        Map<String, Object> logar = Login.logar();
         String nome = (String) logar.get("login");
         int senha = (int) logar.get("senha");
         boolean acesso = funcionarios.stream().anyMatch(p -> p.getLogin().equals(nome) && p.getSenha().equals(senha));
-        validaLoginSenha(acesso, "menuPrincipalDoAdministrador");
+        Login.validaLoginSenha(acesso, "menuPrincipalDoAdministrador");
         return acesso;
     }
 }

@@ -19,8 +19,8 @@ public class EscolhaAdmin {
 
     AdministradorService service = new AdministradorService();
 
-    public void getEscolhaAdmin(int escolhaAdminSwitch, List<Funcionario> funcionarios, List<Aluno> alunos, List<Livro> livros) throws Exception {
-        switch (escolhaAdminSwitch) {
+    public void getEscolhaAdmin(int escolha, List<Funcionario> funcionarios, List<Aluno> alunos, List<Livro> livros) throws Exception {
+        switch (escolha) {
             case 1:
                 System.out.println("Cadastrar funcionario");
                 funcionarios.add(service.cadastrarFuncionario());

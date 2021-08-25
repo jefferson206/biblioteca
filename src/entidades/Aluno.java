@@ -69,11 +69,11 @@ public class Aluno extends Pessoa implements Login<Aluno> {
 
     @Override
     public boolean logarNaAplicacao(List<Aluno> alunos) throws Exception {
-        Map<String, Object> logar = logar();
+        Map<String, Object> logar = Login.logar();
         String nome = (String) logar.get("login");
         int senha = (int) logar.get("senha");
         boolean acesso = alunos.stream().anyMatch(p -> p.getLogin().equals(nome) && p.getSenha().equals(senha));
-        validaLoginSenha(acesso, "menuDoAluno");
+        Login.validaLoginSenha(acesso, "menuDoAluno");
         return acesso;
     }
 }

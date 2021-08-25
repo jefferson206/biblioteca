@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class EscolhaPrincipal {
     List<Administrador> administradores = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
-    EscolhaAdmin escolhaAdmin = new EscolhaAdmin();
     Menu menu = new Menu();
     boolean acesso = false;
 
@@ -21,6 +20,7 @@ public class EscolhaPrincipal {
         switch (escolha) {
             case 1:
                 Administrador administrador = new Administrador();
+                EscolhaAdmin escolhaAdmin = new EscolhaAdmin();
                 acesso = administrador.logarNaAplicacao(administradores);
                 if (!acesso) break;
                 int escolhaAdminSwitch;
@@ -33,15 +33,16 @@ public class EscolhaPrincipal {
                 break;
             case 2:
                 Funcionario funcionario = new Funcionario();
+                EscolhaFuncionario escolhaFuncionario = new EscolhaFuncionario();
                 acesso = funcionario.logarNaAplicacao(funcionarios);
                 if (!acesso) break;
-//                int escolhaFuncionarioSwitch;
-//                do {
-//                    escolhaFuncionarioSwitch = scanner.nextInt();
-//                    escolhaAdmin.getEscolhaAdmin(escolhaFuncionarioSwitch, funcionarios, alunos, livros);
-//                } while (escolhaFuncionarioSwitch != 10);
-//                menu.limparTela();
-//                menu.menuPrincipal();
+                int escolhaFuncionarioSwitch;
+                do {
+                    escolhaFuncionarioSwitch = scanner.nextInt();
+                    escolhaFuncionario.getEscolhaFuncionario(escolhaFuncionarioSwitch, funcionarios, alunos, livros);
+                } while (escolhaFuncionarioSwitch != 10);
+                menu.limparTela();
+                menu.menuPrincipal();
                 break;
             case 3:
                 Aluno aluno = new Aluno();

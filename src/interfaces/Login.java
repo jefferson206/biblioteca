@@ -15,7 +15,7 @@ public interface Login<T> {
 
     public abstract boolean logarNaAplicacao(List<T> list) throws Exception;
 
-    default Map<String, Object> logar() {
+    static Map<String, Object> logar() {
         System.out.print("Digite seu login: ");
         String login = scanner.nextLine();
         if (login.isEmpty()) login = scanner.nextLine();
@@ -26,7 +26,7 @@ public interface Login<T> {
         return objectHashMap;
     }
 
-    default void validaLoginSenha(boolean acesso, String funcaoDoMenu) throws Exception {
+    static void validaLoginSenha(boolean acesso, String funcaoDoMenu) throws Exception {
         Menu menu = new Menu();
         if (!acesso) {
             menu.acessoNegado();

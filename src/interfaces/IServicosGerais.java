@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface IServicosGerais {
-    Livro livro = new Livro();
-    FormCadastroAdmin formCadastro = new FormCadastroAdmin();
 
-    default Livro cadastrarLivro() throws Exception{
+    default Livro cadastrarLivro() throws Exception {
+        FormCadastroAdmin formCadastro = new FormCadastroAdmin();
+        Livro livro = new Livro();
+
         Map<String, Object> objectMap = formCadastro.formularioCadastroLivro();
         livro.setTitulo((String) objectMap.get("titulo"));
         livro.setAutor((String) objectMap.get("autor"));
@@ -31,7 +32,7 @@ public interface IServicosGerais {
     }
 
     default void listarLivros(List<Livro> livros) {
-        livros.stream().map(livro ->  "Titulo: " + livro.getTitulo() +
+        livros.stream().map(livro -> "Titulo: " + livro.getTitulo() +
                 "\nAutor: " + livro.getAutor() +
                 "\nSituação: " + livro.getSituacao() +
                 "\nData do emprestimo: " + livro.getDataEmprestimo() + "\n")

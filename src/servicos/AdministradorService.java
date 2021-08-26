@@ -5,17 +5,19 @@ import entidades.Funcionario;
 import entidades.formularios.FormCadastroAdmin;
 import interfaces.IServicosGerais;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 
 public class AdministradorService implements IServicosGerais {
     Scanner scanner = new Scanner(System.in);
 
     FormCadastroAdmin formCadastroAdmin = new FormCadastroAdmin();
 
-    Aluno aluno = new Aluno();
-    Funcionario funcionario = new Funcionario();
-
     public Funcionario cadastrarFuncionario() throws Exception {
+        Funcionario funcionario = new Funcionario();
+
         Map<String, Object> objectMap = formCadastroAdmin.formularioCadastroPessoa();
         funcionario.setNome((String) objectMap.get("nome"));
         funcionario.setTelefone((String) objectMap.get("telefone"));
@@ -51,6 +53,8 @@ public class AdministradorService implements IServicosGerais {
     }
 
     public Aluno cadastrarAluno() throws Exception {
+        Aluno aluno = new Aluno();
+
         Map<String, Object> objectMap = formCadastroAdmin.formularioCadastroPessoa();
         aluno.setNome((String) objectMap.get("nome"));
         aluno.setTelefone((String) objectMap.get("telefone"));

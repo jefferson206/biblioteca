@@ -74,6 +74,7 @@ public class EscolhaPrincipal {
                 menu.menuPrincipal();
                 break;
             case 4:
+                System.out.println(".......... T C H A U ..........");
                 break;
             default:
                 menu.escolhaInvalida();

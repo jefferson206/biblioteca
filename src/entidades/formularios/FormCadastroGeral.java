@@ -1,10 +1,14 @@
 package entidades.formularios;
 
+import excecoes.TratamentoDeExcecoes;
+
+import java.lang.reflect.Method;
 import java.util.*;
 
 public abstract class FormCadastroGeral {
     Scanner scanner = new Scanner(System.in);
     Map<String, Object> objectHashMap = new HashMap<>();
+    TratamentoDeExcecoes excecoes = new TratamentoDeExcecoes();
 
     public Map<String, Object> formularioCadastroPessoa() {
         System.out.print("Digite o nome completo: ");
@@ -34,15 +38,19 @@ public abstract class FormCadastroGeral {
         return objectHashMap;
     }
 
-    public Map<String, Object> formularioCadastroLogin() {
+    public Map<String, Object> formularioCadastroLogin() throws Exception {
+        FormCadastroGeral formCadastroGeral = new FormCadastroGeral() {};
         System.out.print("Login: ");
         objectHashMap.put("login", scanner.nextLine());
-        System.out.print("Senha: ");
-        objectHashMap.put("senha", scanner.nextInt());
+        printSenha();
+        Method funcao = FormCadastroGeral.class.getMethod("mensagemTipoInvalidoDaSenha");
+        int senha = excecoes.validaTipoInteiro(scanner, formCadastroGeral, funcao);
+        objectHashMap.put("senha", senha);
         return objectHashMap;
     }
 
-    public Map<String, Object> formularioCadastroLivro() {
+    public Map<String, Object> formularioCadastroLivro() throws Exception {
+        FormCadastroGeral formCadastroGeral = new FormCadastroGeral() {};
         System.out.print("Titulo: ");
         String nome = scanner.nextLine();
         if (nome.isEmpty()) nome = scanner.nextLine();
@@ -51,8 +59,28 @@ public abstract class FormCadastroGeral {
         objectHashMap.put("autor", scanner.nextLine());
         System.out.print("Editora: ");
         objectHashMap.put("editora", scanner.nextLine());
-        System.out.print("Ano de publicação: ");
-        objectHashMap.put("anoPublicacao", scanner.nextInt());
+        printAnoPublicacao();
+        Method funcao = FormCadastroGeral.class.getMethod("mensagemTipoInvalidoDoAnoDePublicacao");
+        int anoPublicacao = excecoes.validaTipoInteiro(scanner, formCadastroGeral, funcao);
+        objectHashMap.put("anoPublicacao", anoPublicacao);
         return objectHashMap;
+    }
+
+    public void mensagemTipoInvalidoDoAnoDePublicacao() {
+        System.out.println("Ano de publicação deve ser somente números");
+        printAnoPublicacao();
+    }
+
+    public void mensagemTipoInvalidoDaSenha() {
+        System.out.println("Senha deve ser somente números");
+        printSenha();
+    }
+
+    public void printAnoPublicacao() {
+        System.out.print("Ano de publicação: ");
+    }
+
+    public void printSenha() {
+        System.out.print("Senha: ");
     }
 }

@@ -1,14 +1,11 @@
 package entidades;
 
-import interfaces.Login;
-import uteis.Menu;
+import interfaces.ILogin;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-public class Administrador implements Login<Administrador> {
+public class Administrador implements ILogin<Administrador> {
     private final String login = "admin";
     private final Integer senha = 1234;
 
@@ -33,11 +30,11 @@ public class Administrador implements Login<Administrador> {
 
     @Override
     public boolean logarNaAplicacao(List<Administrador> administrador) throws Exception {
-        Map<String, Object> logar = Login.logar();
+        Map<String, Object> logar = ILogin.logar();
         String nome = (String) logar.get("login");
         int senha = (int) logar.get("senha");
         boolean acesso = getLogin().equals(nome) && getSenha().equals(senha);
-        Login.validaLoginSenha(acesso, "menuPrincipalDoAdministrador");
+        ILogin.validaLoginSenha(acesso, "menuPrincipalDoAdministrador");
         return acesso;
     }
 }

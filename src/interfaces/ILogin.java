@@ -1,5 +1,6 @@
 package interfaces;
 
+import excecoes.TratamentoDeExcecoes;
 import uteis.Menu;
 
 import java.lang.reflect.Method;
@@ -9,19 +10,19 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public interface Login<T> {
+public interface ILogin<T> {
     Map<String, Object> objectHashMap = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
+    TratamentoDeExcecoes excecoes = new TratamentoDeExcecoes();
 
-    public abstract boolean logarNaAplicacao(List<T> list) throws Exception;
-
-    static Map<String, Object> logar() {
+    static Map<String, Object> logar() throws Exception {
         System.out.print("Digite seu login: ");
         String login = scanner.nextLine();
         if (login.isEmpty()) login = scanner.nextLine();
         objectHashMap.put("login", login);
         System.out.print("Digite sua senha: ");
-        int senha = scanner.nextInt();
+        Method funcao = ILogin.class.getMethod("mensagemTipoInvalido");
+        int senha = excecoes.validaTipoInteiro(scanner, excecoes, funcao);
         objectHashMap.put("senha", senha);
         return objectHashMap;
     }
@@ -42,4 +43,11 @@ public interface Login<T> {
         funcao.invoke(menu);
         return;
     }
+
+    static void mensagemTipoInvalido() {
+        System.out.println("Senha deve ser somente números");
+        System.out.print("Digite sua senha: ");
+    }
+
+    boolean logarNaAplicacao(List<T> list) throws Exception;
 }

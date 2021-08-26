@@ -2,13 +2,12 @@ package servicos;
 
 import entidades.Aluno;
 import entidades.Funcionario;
-import entidades.Livro;
 import entidades.formularios.FormCadastroAdmin;
-import enums.Situacao;
+import interfaces.IServicosGerais;
 
 import java.util.*;
 
-public class AdministradorService implements ServicosGerais {
+public class AdministradorService implements IServicosGerais {
     Scanner scanner = new Scanner(System.in);
 
     FormCadastroAdmin formCadastroAdmin = new FormCadastroAdmin();
@@ -16,7 +15,7 @@ public class AdministradorService implements ServicosGerais {
     Aluno aluno = new Aluno();
     Funcionario funcionario = new Funcionario();
 
-    public Funcionario cadastrarFuncionario() {
+    public Funcionario cadastrarFuncionario() throws Exception {
         Map<String, Object> objectMap = formCadastroAdmin.formularioCadastroPessoa();
         funcionario.setNome((String) objectMap.get("nome"));
         funcionario.setTelefone((String) objectMap.get("telefone"));
@@ -51,7 +50,7 @@ public class AdministradorService implements ServicosGerais {
         else sucesso();
     }
 
-    public Aluno cadastrarAluno() {
+    public Aluno cadastrarAluno() throws Exception {
         Map<String, Object> objectMap = formCadastroAdmin.formularioCadastroPessoa();
         aluno.setNome((String) objectMap.get("nome"));
         aluno.setTelefone((String) objectMap.get("telefone"));
@@ -89,5 +88,4 @@ public class AdministradorService implements ServicosGerais {
         if (tamanhoInicial == alunos.size()) cadastroInexistente();
         else sucesso();
     }
-
 }

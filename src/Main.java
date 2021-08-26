@@ -4,9 +4,8 @@ import entidades.Livro;
 import escolhas.EscolhaPrincipal;
 import uteis.Menu;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.lang.reflect.Method;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -28,8 +27,13 @@ public class Main {
         menu.menuPrincipal();
 
         do {
+            while (!scanner.hasNextInt()) {
+                Method funcao = Menu.class.getMethod("menuPrincipal");
+                menu.erroDeInputDoMenu(menu, funcao);
+                scanner.next();
+            }
             escolha = scanner.nextInt();
             escolhaPrincipal.getEscolhaPrincipal(escolha, funcionarios, alunos, livros);
-        } while(escolha != 4);
+        } while (escolha != 4);
     }
 }

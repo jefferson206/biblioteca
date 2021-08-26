@@ -3,6 +3,7 @@ import entidades.Funcionario;
 import entidades.Livro;
 import enums.Situacao;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,6 @@ public class Setup {
         aluno.setSemestre("8");
         aluno.setLogin("jefferson");
         alunos.add(aluno);
-
     }
 
     public void setupLivro(List<Livro> livros) {

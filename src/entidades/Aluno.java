@@ -1,11 +1,11 @@
 package entidades;
 
-import interfaces.Login;
+import interfaces.ILogin;
 
 import java.util.List;
 import java.util.Map;
 
-public class Aluno extends Pessoa implements Login<Aluno> {
+public class Aluno extends Pessoa implements ILogin<Aluno> {
     private String login;
     private Integer senha;
     private String curso;
@@ -69,11 +69,11 @@ public class Aluno extends Pessoa implements Login<Aluno> {
 
     @Override
     public boolean logarNaAplicacao(List<Aluno> alunos) throws Exception {
-        Map<String, Object> logar = Login.logar();
+        Map<String, Object> logar = ILogin.logar();
         String nome = (String) logar.get("login");
         int senha = (int) logar.get("senha");
         boolean acesso = alunos.stream().anyMatch(p -> p.getLogin().equals(nome) && p.getSenha().equals(senha));
-        Login.validaLoginSenha(acesso, "menuDoAluno");
+        ILogin.validaLoginSenha(acesso, "menuDoAluno");
         return acesso;
     }
 }

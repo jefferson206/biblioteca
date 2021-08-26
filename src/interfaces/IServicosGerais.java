@@ -1,4 +1,4 @@
-package servicos;
+package interfaces;
 
 import entidades.Livro;
 import entidades.formularios.FormCadastroAdmin;
@@ -7,11 +7,11 @@ import enums.Situacao;
 import java.util.List;
 import java.util.Map;
 
-public interface ServicosGerais {
+public interface IServicosGerais {
     Livro livro = new Livro();
     FormCadastroAdmin formCadastro = new FormCadastroAdmin();
 
-    default Livro cadastrarLivro() {
+    default Livro cadastrarLivro() throws Exception{
         Map<String, Object> objectMap = formCadastro.formularioCadastroLivro();
         livro.setTitulo((String) objectMap.get("titulo"));
         livro.setAutor((String) objectMap.get("autor"));

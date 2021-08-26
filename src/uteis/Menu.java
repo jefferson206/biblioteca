@@ -33,6 +33,19 @@ public class Menu extends JPanel {
         System.out.print("Opção: ");
     }
 
+    public void menuDoFuncionario() {
+        System.out.println("-------- F U N C I O N Á R I O --------");
+        System.out.println("| 1) Listar todos os livros           |");
+        System.out.println("| 2) Listar livros disponíveis        |");
+        System.out.println("| 3) Fazer emprestimo do Livro        |");
+        System.out.println("| 4) Devolver Livro                   |");
+        System.out.println("| 5) Cadastrar Livro                  |");
+        System.out.println("| 6) Deletar Livro                    |");
+        System.out.println("| 7) voltar ao menu principal         |");
+        System.out.println("---------------------------------------");
+        System.out.print("Opção: ");
+    }
+
     public void menuDoAluno() {
         System.out.println("-------------- A L U N O --------------");
         System.out.println("| 1) Checar todos os livros           |");
@@ -86,6 +99,12 @@ public class Menu extends JPanel {
     public void sleepClear() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         limparTela();
+    }
+
+    public void erroDeInputDoMenu(Object object, Method funcao) throws Exception {
+        System.out.println("Menu só aceita numeros inteiro");
+        sleepClear();
+        funcao.invoke(object);
     }
 
     public void easterEgg() {

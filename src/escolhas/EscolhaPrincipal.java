@@ -6,6 +6,7 @@ import entidades.Funcionario;
 import entidades.Livro;
 import uteis.Menu;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,6 +26,11 @@ public class EscolhaPrincipal {
                 if (!acesso) break;
                 int escolhaAdminSwitch;
                 do {
+                    while (!scanner.hasNextInt()) {
+                        Method funcao = Menu.class.getMethod("menuPrincipalDoAdministrador");
+                        menu.erroDeInputDoMenu(menu, funcao);
+                        scanner.next();
+                    }
                     escolhaAdminSwitch = scanner.nextInt();
                     escolhaAdmin.getEscolhaAdmin(escolhaAdminSwitch, funcionarios, alunos, livros);
                 } while (escolhaAdminSwitch != 10);
@@ -38,9 +44,14 @@ public class EscolhaPrincipal {
                 if (!acesso) break;
                 int escolhaFuncionarioSwitch;
                 do {
+                    while (!scanner.hasNextInt()) {
+                        Method funcao = Menu.class.getMethod("menuDoFuncionario");
+                        menu.erroDeInputDoMenu(menu, funcao);
+                        scanner.next();
+                    }
                     escolhaFuncionarioSwitch = scanner.nextInt();
                     escolhaFuncionario.getEscolhaFuncionario(escolhaFuncionarioSwitch, funcionarios, alunos, livros);
-                } while (escolhaFuncionarioSwitch != 10);
+                } while (escolhaFuncionarioSwitch != 7);
                 menu.limparTela();
                 menu.menuPrincipal();
                 break;
@@ -51,6 +62,11 @@ public class EscolhaPrincipal {
                 if (!acesso) break;
                 int escolhaAlunoSwitch;
                 do {
+                    while (!scanner.hasNextInt()) {
+                        Method funcao = Menu.class.getMethod("menuDoAluno");
+                        menu.erroDeInputDoMenu(menu, funcao);
+                        scanner.next();
+                    }
                     escolhaAlunoSwitch = scanner.nextInt();
                     escolhaAluno.getEscolhaAluno(escolhaAlunoSwitch, alunos, livros);
                 } while (escolhaAlunoSwitch != 5);

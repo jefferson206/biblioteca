@@ -1,13 +1,14 @@
 package servicos;
 
-import entidades.Livro;
-import entidades.formularios.FormCadastroFuncionario;
-import enums.Situacao;
+import entidades.Aluno;
+import interfaces.IServicosGerais;
 
 import java.util.List;
-import java.util.Map;
 
-public class FuncionarioService implements ServicosGerais {
+public class FuncionarioService implements IServicosGerais {
 
+    public boolean procurarAlunoPeloLogin(List<Aluno> alunos, String login) {
+        return alunos.stream().anyMatch(aluno -> aluno.getLogin().equals(login));
+    }
 
 }
